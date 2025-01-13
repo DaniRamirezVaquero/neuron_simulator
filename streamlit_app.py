@@ -63,13 +63,13 @@ st.table(df)
 # Construir la fórmula en LaTeX
 if func:
     activation_func = func
-    if activation_func == "sigmoid":
+    if activation_func == "Sigmoid":
         latex_formula = r"y = \sigma\left(" + " + ".join([f"w_{i} \\cdot x_{i}" for i in range(n_inputs)]) + " + b\\right)"
-    elif activation_func == "relu":
+    elif activation_func == "Relu":
         latex_formula = r"y = \max\left(0, " + " + ".join([f"w_{i} \\cdot x_{i}" for i in range(n_inputs)]) + " + b\\right)"
-    elif activation_func == "tanh":
+    elif activation_func == "Tanh":
         latex_formula = r"y = \tanh\left(" + " + ".join([f"w_{i} \\cdot x_{i}" for i in range(n_inputs)]) + " + b\\right)"
-    elif activation_func == "binary_step":
+    elif activation_func == "Binary_step":
         latex_formula = r"y = \begin{cases} 1 & \text{si } " + " + ".join([f"w_{i} \\cdot x_{i}" for i in range(n_inputs)]) + " + b \geq 0 \\ 0 & \text{si } " + " + ".join([f"w_{i} \\cdot x_{i}" for i in range(n_inputs)]) + " + b < 0 \end{cases}"
     else:
         latex_formula = "y = " + " + ".join([f"w_{i} \\cdot x_{i}" for i in range(n_inputs)]) + " + b"
