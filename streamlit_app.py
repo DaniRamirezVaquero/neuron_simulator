@@ -40,17 +40,13 @@ with colBias:
     b = st.number_input("Sesgo(bias)", key="b")
     
 with colFunc:
-    func = st.selectbox(
+    func_value = st.selectbox(
         "Función de activación", 
         [func.value for func in ActivationFunction],
         index=None,
         placeholder="Elige una función de activación")
 
-# Crear la neurona
-neuron = Neuron(weights, b, func)
 
-# Calcular la salida de la neurona
-y = neuron.run(inputs)
 
 # Mostrar los arrays de inputs y weights en una tabla
 data = {
@@ -60,9 +56,18 @@ data = {
 df = pd.DataFrame(data)
 st.table(df)
 
+# Convertir el valor seleccionado a un miembro del enum ActivationFunction
+func = ActivationFunction(func_value) if func_value else None
+
 # Construir la fórmula en LaTeX
 if func:
-    activation_func = func
+# Crear la neurona
+    neuron = Neuron(weights, b, func)
+
+    # Calcular la salida de la neurona
+    y = neuron.run(inputs)
+    
+    activation_func = func.value
     if activation_func == "Sigmoid":
         latex_formula = r"y = \sigma\left(" + " + ".join([f"w_{i} \\cdot x_{i}" for i in range(n_inputs)]) + " + b\\right)"
     elif activation_func == "Relu":
