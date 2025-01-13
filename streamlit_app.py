@@ -42,7 +42,7 @@ with colBias:
 with colFunc:
     func = st.selectbox(
         "Función de activación", 
-        list(ActivationFunction.values()),
+        [func.value for func in ActivationFunction],
         index=None,
         placeholder="Elige una función de activación")
 
