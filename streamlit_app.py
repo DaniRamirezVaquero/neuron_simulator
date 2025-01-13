@@ -12,10 +12,8 @@ st.title("Simulador de neurona 🧠")
 
 st.markdown("## X entradas con bias (sesgo)")
 
-st.write("Elige el número de entradas / pesos que tendrá la neurona")
-
 # Slider para número de entradas y pesos
-n_inputs = st.slider("Número de entradas", 1, 8, 3)
+n_inputs = st.slider("Número de entradas / pesos", 1, 8, 3)
 
 cols = st.columns(n_inputs)
 weights = []
@@ -28,17 +26,12 @@ for i in range(n_inputs):
         input_val = st.number_input(f"x{i+1}", key=f"x{i}")
         inputs.append(input_val)
         
-st.write(inputs)
-        
 st.markdown("### Pesos")
         
 for i in range(n_inputs):
     with cols[i]:       
         weight = st.slider(f"w{i+1}", -10.0, 10.0, 0.0, key=f"w{i}")
         weights.append(weight)
-        
-st.write(weights)
-        
 
 b = st.slider("Bias", -10.0, 10.0, 0.0, key="b")
 
