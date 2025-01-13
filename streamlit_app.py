@@ -26,7 +26,8 @@ for i in range(n_inputs):
     with cols[i]:
         input_val = st.number_input(f"x{i+1}", key=f"x{i}")
         inputs.append(input_val)
-        st.write(inputs)
+        
+st.write(inputs)
         
 st.markdown("### Pesos")
         
@@ -34,7 +35,8 @@ for i in range(n_inputs):
     with cols[i]:       
         weight = st.slider(f"w{i+1}", -10.0, 10.0, 0.0, key=f"w{i}")
         weights.append(weight)
-        st.write(weights)
+        
+st.write(weights)
         
 
 b = st.slider("Bias", -10.0, 10.0, 0.0, key="b")
