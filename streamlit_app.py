@@ -1,4 +1,5 @@
 import streamlit as st
+import pandas as pd
 
 # Configuración de la página
 st.set_page_config(page_title="Simulador de neurona", page_icon="🧠")
@@ -43,6 +44,14 @@ b = st.slider("Bias", -10.0, 10.0, 0.0, key="b")
 
 y = sum(w * x for w, x in zip(weights, inputs)) + b
 y = round(y, 2)
+
+# Mostrar los arrays de inputs y weights en una tabla
+data = {
+    "Entrada (x)": inputs,
+    "Peso (w)": weights
+}
+df = pd.DataFrame(data)
+st.table(df)
 
 # Construir la fórmula en LaTeX
 latex_formula = "y = " + " + ".join([f"w_{i} \\cdot x_{i}" for i in range(n_inputs)]) + " + b"
