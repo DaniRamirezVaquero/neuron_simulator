@@ -34,5 +34,6 @@ y = round(y, 2)
 
 # Construir la fórmula en LaTeX
 latex_formula = "y = " + " + ".join([f"w_{i} \\cdot x_{i}" for i in range(n_inputs)]) + " + b"
+st.latex(latex_formula)
 
 st.write("La salida de la neurona es", y)
