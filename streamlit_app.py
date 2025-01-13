@@ -34,6 +34,8 @@ for i in range(n_inputs):
         
 colBias, colFunc = st.columns(2)
 
+st.divider()
+
 with colBias:
     b = st.number_input("Sesgo(bias)", key="b")
     
