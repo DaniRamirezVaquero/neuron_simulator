@@ -2,10 +2,10 @@ import math
 from enum import Enum
 
 class ActivationFunction(Enum):
-  SIGMOID = "sigmoid"
-  RELU = "relu"
-  TANH = "tanh"
-  BINARY_STEP = "binary_step"
+  SIGMOID = "Sigmoid"
+  RELU = "Relu"
+  TANH = "Tanh"
+  BINARY_STEP = "Binary_step"
 
 class Neuron:
   def __init__(self, weights, bias, func: ActivationFunction):
