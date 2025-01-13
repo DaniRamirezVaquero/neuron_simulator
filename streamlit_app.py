@@ -40,7 +40,11 @@ with colBias:
     b = st.number_input("Sesgo(bias)", key="b")
     
 with colFunc:
-    func = st.selectbox("Función de activación", list(ActivationFunction))
+    func = st.selectbox(
+        "Función de activación", 
+        list(ActivationFunction),
+        index=None,
+        placeholder="Elige una función de activación")
 
 # Crear la neurona
 neuron = Neuron(weights, b, ActivationFunction(func))
@@ -57,8 +61,20 @@ df = pd.DataFrame(data)
 st.table(df)
 
 # Construir la fórmula en LaTeX
-latex_formula = "y = " + " + ".join([f"w_{i} \\cdot x_{i}" for i in range(n_inputs)]) + " + b"
-st.latex(latex_formula)
+if func:
+    activation_func = func.value
+    if activation_func == "sigmoid":
+        latex_formula = r"y = \sigma\left(" + " + ".join([f"w_{i} \\cdot x_{i}" for i in range(n_inputs)]) + " + b\\right)"
+    elif activation_func == "relu":
+        latex_formula = r"y = \max\left(0, " + " + ".join([f"w_{i} \\cdot x_{i}" for i in range(n_inputs)]) + " + b\\right)"
+    elif activation_func == "tanh":
+        latex_formula = r"y = \tanh\left(" + " + ".join([f"w_{i} \\cdot x_{i}" for i in range(n_inputs)]) + " + b\\right)"
+    elif activation_func == "binary_step":
+        latex_formula = r"y = \begin{cases} 1 & \text{si } " + " + ".join([f"w_{i} \\cdot x_{i}" for i in range(n_inputs)]) + " + b \geq 0 \\ 0 & \text{si } " + " + ".join([f"w_{i} \\cdot x_{i}" for i in range(n_inputs)]) + " + b < 0 \end{cases}"
+    else:
+        latex_formula = "y = " + " + ".join([f"w_{i} \\cdot x_{i}" for i in range(n_inputs)]) + " + b"
+
+    st.latex(latex_formula)
 
 # Mostrar la salida de la neurona de una manera más vistosa
 st.metric(label="Salida de la neurona (y)", value=y)
