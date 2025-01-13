@@ -31,6 +31,7 @@ for i in range(n_inputs):
         weight = st.slider(f"w{i+1}", -10.0, 10.0, 0.0, key=f"w{i}")
         weights.append(weight)
 
+st.markdown("### Sesgo(bias)")
 b = st.slider("Bias", -10.0, 10.0, 0.0, key="b")
 
 y = sum(w * x for w, x in zip(weights, inputs)) + b
@@ -42,17 +43,7 @@ data = {
     "Peso (w)": weights
 }
 df = pd.DataFrame(data)
-
-# Convertir el DataFrame a HTML y ocultar la columna de índices con CSS
-hide_table_row_index = """
-    <style>
-    thead tr th:first-child {display:none}
-    tbody th {display:none}
-    </style>
-    """
-
-st.markdown(hide_table_row_index, unsafe_allow_html=True)
-st.write(df.to_html(escape=False, index=False), unsafe_allow_html=True)
+st.table(df)
 
 # Construir la fórmula en LaTeX
 latex_formula = "y = " + " + ".join([f"w_{i} \\cdot x_{i}" for i in range(n_inputs)]) + " + b"
