@@ -62,7 +62,7 @@ st.table(df)
 
 # Construir la fórmula en LaTeX
 if func:
-    activation_func = func.value
+    activation_func = func
     if activation_func == "sigmoid":
         latex_formula = r"y = \sigma\left(" + " + ".join([f"w_{i} \\cdot x_{i}" for i in range(n_inputs)]) + " + b\\right)"
     elif activation_func == "relu":
