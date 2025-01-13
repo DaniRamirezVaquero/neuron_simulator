@@ -42,8 +42,17 @@ data = {
     "Peso (w)": weights
 }
 df = pd.DataFrame(data)
-df.index = [""] * len(df)  # Ocultar la columna de índices
-st.table(df)
+
+# Convertir el DataFrame a HTML y ocultar la columna de índices con CSS
+hide_table_row_index = """
+    <style>
+    thead tr th:first-child {display:none}
+    tbody th {display:none}
+    </style>
+    """
+
+st.markdown(hide_table_row_index, unsafe_allow_html=True)
+st.write(df.to_html(escape=False, index=False), unsafe_allow_html=True)
 
 # Construir la fórmula en LaTeX
 latex_formula = "y = " + " + ".join([f"w_{i} \\cdot x_{i}" for i in range(n_inputs)]) + " + b"
@@ -51,4 +60,3 @@ st.latex(latex_formula)
 
 # Mostrar la salida de la neurona de una manera más vistosa
 st.metric(label="Salida de la neurona (y)", value=y)
-st.success(f"La salida de la neurona es: {y}")
