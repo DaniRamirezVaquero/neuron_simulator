@@ -47,7 +47,7 @@ with colFunc:
         placeholder="Elige una función de activación")
 
 # Crear la neurona
-neuron = Neuron(weights, b, ActivationFunction(func))
+neuron = Neuron(weights, b, func)
 
 # Calcular la salida de la neurona
 y = neuron.run(inputs)
