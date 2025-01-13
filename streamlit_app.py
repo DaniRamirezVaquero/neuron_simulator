@@ -14,7 +14,7 @@ st.markdown("## X entradas con bias (sesgo)")
 st.write("Elige el número de entradas / pesos que tendrá la neurona")
 
 # Slider para número de entradas y pesos
-n_inputs = st.slider("Número de entradas", 1, 10, 3)
+n_inputs = st.slider("Número de entradas", 1, 8, 3)
 
 cols = st.columns(n_inputs)
 weights = []
