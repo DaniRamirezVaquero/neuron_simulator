@@ -32,9 +32,9 @@ for i in range(n_inputs):
         weight =st.number_input(f"w{i+1}", key=f"w{i}")
         weights.append(weight)
         
-colBias, colFunc = st.columns(2)
-
 st.divider()
+
+colBias, colFunc = st.columns(2)
 
 with colBias:
     b = st.number_input("Sesgo(bias)", key="b")
