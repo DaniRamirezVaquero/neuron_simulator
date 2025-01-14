@@ -46,8 +46,6 @@ with colFunc:
         index=None,
         placeholder="Elige una función de activación")
 
-
-
 # Mostrar los arrays de inputs y weights en una tabla
 data = {
     "Entrada (x)": inputs,
@@ -81,5 +79,5 @@ if func:
 
     st.latex(latex_formula)
 
-# Mostrar la salida de la neurona de una manera más vistosa
-st.metric(label="Salida de la neurona (y)", value=y)
+    # Mostrar la salida de la neurona
+    st.metric(label="Salida de la neurona (y)", value=y)
